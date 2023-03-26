@@ -1,0 +1,123 @@
+1.Pertama yang harus dilakukan adalah mengganti identity mikrotik agar tidak membingungkan kita disaat akan menyeting mikrotik
+
+  System>Identity pada kolom identity ubahlah nama sesuai yang kamu inginkan
+
+  
+
+2.Ubah user login mikrotik
+
+  System>Users lalu klik tombol tambah pada halaman "New User" isi sesuai format berikut 
+
+  Name : isi dengan namamu
+
+  Group: Full
+
+  Password : isi sesuai keinginanmu
+
+  Confirm Password : Masukkan password yang barusan di buat
+
+  Kemuadian "OK"
+
+  *Catatan* Jangan lupa User Admin di matiin klik tombol X pada admin
+
+ 
+
+3.Routing IP Static dan buat Firewall, Ketahuilah Informasi IP dari ISP dengan cara berikut
+
+  IP>DHCP Client klik tambah pada Interface isi sesuai dengan port berapa kabel ISP di colokkan lalu "OK"
+
+  Jika Status sudah bound klik 2 kali pada ether yg telah bound lalu ke tab "Status"
+
+  Catatlah/ingatlah Informasi status yang telah muncul berikut yang harus di catat/ingat
+
+  -IP Address
+
+  -Gateway
+
+  -Primary DNS 
+
+  Lalu Klik "OK" hapus Interface yang telah di buat Klik tombol - lalu buatlah IP address yang baru dengan informasi IP yang barusan kalian catat/ingat
+
+  IP>Addresses tambah lalu masukkan IP Address yg tadi pada address Misal 192.168.1.2/24 jangan lupa masukkan slash diakhir IP kemudian "OK"
+
+  Masukkan Gateway sebagai berikut
+
+  IP>Routes tambah masukkan pada kolom "gateway" misal 192.168.1.1 lalu "OK"
+
+  Masukkan DNS berikut caranya 
+
+  IP>DNS Pada Kolom Servers masukkan DNS misal 192.168.1.1 lalu centang "Allow Remote Requests
+
+  Buatlah Firewall 
+
+  IP>Firewall pada tab NAT tambah Chain : srcnat Out. Interface : masukkan sesuai port ether yang terhubung dengan ISP lalu ke tab Action kolom action: masquerade lalu "OK"
+
+  
+
+4.Mengatur NTP 
+
+  System>SNTP Client centang di Enable pada Primary NTP Server : masukkan id.pool.ntp.org jika error tambahkan 1 angka misal 0,1,2 di depan id Klik "OK"
+
+  kemudian ke System>Clock Pada kolom "Time Zone Name" ganti ke Asia/Jayapura
+
+5.Membuat IP address
+
+  IP>Addresses buatlah Topologi terlebih dahulu atur IP sesuai dengan soal
+
+  Gunakan slash dengan Range IP yang sedikit misal /30 dengan IP berjumlah 3
+
+  Dalam membuat IP pada router mikrotik gunakan ip address dengan akhiran 1 misal xxx.xxx.xxx.1
+
+6.Membuat DHCP Server 
+
+  IP>DHCP Server pada tab DHCP klik "DHCP Setup" DHCP Server Interface masukkan ether sesuai dengan port yg digunakan
+
+  *Catatan* Jangan menggunakan ether yang telah digunakan untuk Routing static
+
+  klik next sampai pada menu Address To give Out : disinilah mengatur jumlah IP yang dapat di gunakan misal /25 jumlah IP dari slash tersebut yaitu 126 dan dari soal kita disuruh mengatur jumlahnya misal 100 IP contoh 192.168.1.2-192.168.1.126 maka yang di masukan sebagai berikut 192.168.1.2-192.168.1.100 jika terdapat Access Point maka berjumlah 101
+
+  kemudian next sampai Succesfully
+
+7.Membuat Hotspot
+
+  IP>Hotspot pada tab Hotspot klik Hotspot Setup pada Kolom Hotspot Interface masukkan port yg terhubung dengan Access Point klik "Next" sampai pada "select certificate" isi none lalu "Next" pada "DNS Name" isi sesuai dengan soal jika tidak ada isi saja nama kalian misal Subhan.net lalu "Next" sampai Succesfully 
+
+  jika ingin membuat user hotspot begini caranya 
+
+  IP>Hotspot pada tab Users tambah Formatnya seperti berikut
+
+  Server : All
+
+  Name : misal Subhan
+
+  Password : terserah tapi kalo pas login salah panjangin passwordnya udh gitu aja klo banyak-banyak ntar bingung buat usernya :V
+
+8.Mengatur kecepatan internet kabel dan wireless
+
+  Queues>Simple Queues tambah formatnya berikut cuy
+
+  Name : misal Limit Bandwith Kabel
+
+  Target : bisa pake ether bisa juga pake IP misal 192.168.1.0/25
+
+  Target Upload Max Limit masukkan jumlah sesuai soal
+
+  Target Download Max Limit masukkan jumlah sesuai soal
+
+  lalu ke tab Advance masukkan format berikut
+
+  Target Upload Limit At : masukkan seperti di atas
+
+  Target Download Limit At : masukkan seperti di atas
+
+  
+
+  Udah segitu ajah 
+
+  Sa buat juga buat semua paket 3 ama 4 bisa tau basicnya
+
+  
+
+  GOOD LUCK 
+
+  Target Upload Limit At :
